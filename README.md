@@ -37,7 +37,7 @@ The SoC integrates a lightweight RISC-V processor (PicoRV32) with a dedicated AS
 
 The processor writes inputs (KEY, NONCE, AD, PT) into SIC registers, triggers encryption or decryption, and reads back the resulting ciphertext/plaintext and authentication tag — all through the SIC's memory-mapped interface described above.
 
-
+<a href="docs/images/process_flow.png"><img src="docs/images/process_flow.png" alt="Process Flow" width="700"></a>
 
 ### Module hierarchy
 
