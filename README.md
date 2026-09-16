@@ -108,6 +108,8 @@ Verification was structured across three levels of integration, each with its ow
 
 Post-route results: **zero DRC violations, zero connectivity errors, positive timing slack (+0.013 ns) across all 2,091 analyzed paths**, with 100% timing coverage across setup, pulse width, and external delay checks.
 
+Full synthesis, timing, power, and LEC reports are available in [`/Reports`](./Reports).
+
 ---
 
 ## Known limitations & honest scope
