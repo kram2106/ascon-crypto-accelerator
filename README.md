@@ -64,19 +64,20 @@ Verification was structured across three levels of integration, each with its ow
 
 1. **Core-level (`tb_ascon.v`).** Drives the `Ascon` module's serial interface directly with a NIST test vector, running one encryption followed by one decryption, and automatically compares the captured ciphertext/plaintext and authentication tags against expected values.
 
+2. **SIC integration (`tb_sic.v`).** Drives the ASCON SIC entirely through its memory-mapped bus interface (as PicoRV32 would), validating the register map, bus protocol, and the SIC's serialization/deserialization to and from the ASCON core — catching integration bugs that core-level testing alone would miss.
+
+3. **Full SoC (`tb_soc_top.v`).** Only drives clock and reset; PicoRV32 executes actual compiled firmware (`firmware.hex`), which performs encryption and decryption via the SIC and writes results to data memory. The testbench polls for a firmware completion flag, then reads and verifies the results — the closest level to how the design would actually run in deployment.
+
+4. **Formal verification (Logical Equivalence Checking).** After synthesis, Cadence LEC was used to formally prove that the gate-level netlist of the standalone ASCON core is logically equivalent to its RTL description — for both encryption and decryption datapaths — with zero unmapped points and a final `PASS` compare status.
+
+
 **_Core-level testbench waveform_** (`tb_ascon.v`):
 
 ![ASCON core testbench waveform](docs/images/ascon_core_waveform.jpg)
 
-3. **SIC integration (`tb_sic.v`).** Drives the ASCON SIC entirely through its memory-mapped bus interface (as PicoRV32 would), validating the register map, bus protocol, and the SIC's serialization/deserialization to and from the ASCON core — catching integration bugs that core-level testing alone would miss.
-
-4. **Full SoC (`tb_soc_top.v`).** Only drives clock and reset; PicoRV32 executes actual compiled firmware (`firmware.hex`), which performs encryption and decryption via the SIC and writes results to data memory. The testbench polls for a firmware completion flag, then reads and verifies the results — the closest level to how the design would actually run in deployment.
-
 **_Full SoC testbench waveform_** (`tb_soc_top.v`):
 
 ![SoC testbench waveform](docs/images/soc_waveform.jpg)
-
-6. **Formal verification (Logical Equivalence Checking).** After synthesis, Cadence LEC was used to formally prove that the gate-level netlist of the standalone ASCON core is logically equivalent to its RTL description — for both encryption and decryption datapaths — with zero unmapped points and a final `PASS` compare status.
 
 **_LEC (RTL vs. gate-level) equivalence check — PASS:_**
 
