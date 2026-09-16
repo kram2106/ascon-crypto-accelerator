@@ -33,7 +33,10 @@ Most academic ASCON implementations stop at "the algorithm works in simulation."
 
 The SoC integrates a lightweight RISC-V processor (PicoRV32) with a dedicated ASCON hardware core, connected through a custom **Serial Interface Controller (SIC)** and a memory-mapped address decoder.
 
-![Overall System Architecture](docs/images/architecture.png)
+<a href="docs/images/architecture.png"><img src="docs/images/architecture.png" alt="Overall System Architecture" width="700"></a>
+
+The processor writes inputs (KEY, NONCE, AD, PT) into SIC registers, triggers encryption or decryption, and reads back the resulting ciphertext/plaintext and authentication tag — all through the SIC's memory-mapped interface described above.
+
 
 
 ### Module hierarchy
@@ -73,15 +76,15 @@ Verification was structured across three levels of integration, each with its ow
 
 **_Core-level testbench waveform_** (`tb_ascon.v`):
 
-![ASCON core testbench waveform](docs/images/ascon_core_waveform.jpg)
+<a href="docs/images/ascon_core_waveform.jpg"><img src="docs/images/ascon_core_waveform.jpg" alt="ASCON core testbench waveform" width="700"></a>
 
 **_Full SoC testbench waveform_** (`tb_soc_top.v`):
 
-![SoC testbench waveform](docs/images/soc_waveform.jpg)
+<a href="docs/images/soc_waveform.jpg"><img src="docs/images/soc_waveform.jpg" alt="SoC testbench waveform" width="700"></a>
 
 **_LEC (RTL vs. gate-level) equivalence check — PASS:_**
 
-![LEC verification result](docs/reports/lec.jpg)
+<a href="docs/reports/lec.jpg"><img src="docs/reports/lec.jpg" alt="LEC verification result" width="700"></a>
 
 ---
 
@@ -100,15 +103,15 @@ Verification was structured across three levels of integration, each with its ow
 
 **_Floorplan of the ASCON core_**
 
-![Floorplan of the ASCON core](docs/images/floorplan.jpg)
+<a href="docs/images/floorplan.jpg"><img src="docs/images/floorplan.jpg" alt="Floorplan of the ASCON core" width="700"></a>
 
 **_Post-route placement and routing_**
 
-![Post-route placement and routing](docs/images/PnR.jpg)
+<a href="docs/images/PnR.jpg"><img src="docs/images/PnR.jpg" alt="Post-route placement and routing" width="700"></a>
 
 Post-route results: **zero DRC violations, zero connectivity errors, positive timing slack (+0.013 ns) across all 2,091 analyzed paths**, with 100% timing coverage across setup, pulse width, and external delay checks.
 
-Post Route timing, power, and DRC reports are available in [`/reports`](docs/reports).
+> Screenshots of the post-route timing, power, and DRC summary reports (Cadence Innovus) are available in [`/reports`](docs/reports). Raw `.rpt` log files were not preserved from this specific final run.
 
 ---
 
