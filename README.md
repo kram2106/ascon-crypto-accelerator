@@ -81,7 +81,7 @@ Verification was structured across three levels of integration, each with its ow
 
 **_LEC (RTL vs. gate-level) equivalence check — PASS:_**
 
-![LEC verification result](docs/images/lec.jpg)
+![LEC verification result](docs/reports/lec.jpg)
 
 ---
 
