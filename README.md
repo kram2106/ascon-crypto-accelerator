@@ -138,6 +138,6 @@ This project integrates [PicoRV32](https://github.com/YosysHQ/picorv32) (© Clai
 
 - **Kanthi Ram A** — RTL design (ASCON core, SIC, SoC integration), firmware, synthesis and physical design   
 - Danus D - ASCON algorithm analysis, Python-based random test vector generation and verification testbench design
-- Pradesh Kumar M - Comparative research on lightweight cryptographic algorithms, RISC-V SoC Architecture selection and RTL code review
+- Pradesh Kumar M - Comparative research on lightweight cryptographic algorithms, RISC-V SoC Architecture and RTL code review
 
 *Guided by Dr. Jean Jenifer Nesam J, School of Electronics Engineering, VIT Chennai.*
